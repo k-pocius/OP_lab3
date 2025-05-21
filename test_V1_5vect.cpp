@@ -123,3 +123,40 @@ TEST(StudentTest, MoveAssignmentOperator) {
     EXPECT_EQ(s1.getNd(), Vector<int>());
     EXPECT_EQ(s1.getVid(), 0.0);
 }
+
+TEST(Vector, DefaultEmpty) {
+    Vector<int> v;
+    EXPECT_EQ(v.getSize(), 0);
+    EXPECT_TRUE(v.empty());
+}
+
+TEST(Vector, PushBackAndAccess) {
+    Vector<int> v;
+    v.push_back(42);
+    EXPECT_EQ(v.getSize(), 1);
+    EXPECT_EQ(v[0], 42);
+}
+
+TEST(Vector, PopBack) {
+    Vector<int> v;
+    v.push_back(1);
+    v.pop_back();
+    EXPECT_EQ(v.getSize(), 0);
+    v.pop_back();  // no crash if empty
+    EXPECT_EQ(v.getSize(), 0);
+}
+
+TEST(Vector, ResizeGrow) {
+    Vector<int> v;
+    v.push_back(5);
+    v.resize(3);
+    EXPECT_EQ(v.getSize(), 3);
+    EXPECT_EQ(v[1], 0);  // default int
+}
+
+TEST(Vector, ResizeShrink) {
+    Vector<int> v = {1, 2, 3};
+    v.resize(2);
+    EXPECT_EQ(v.getSize(), 2);
+    EXPECT_EQ(v[1], 2);
+}

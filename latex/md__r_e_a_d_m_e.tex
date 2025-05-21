@@ -1,0 +1,178 @@
+\chapter{README}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{README@{README}}
+Naudojimosi instrukcijos\+: Norint paleisti programą, į terminalą įvesti "{}make run\+\_\+test"{} Norint ištrinti sukompiliuotus failus, į terminalą įvesti "{}make clean"{}
+
+Ši programa leidžia\+:
+
+Įvesti studentų duomenis rankiniu būdu, automatiškai arba iš failo Apskaičiuoti galutinį pažymių rezultatą pagal vidurkį arba medianą Skirstyti studentus į dvi grupes\+: pažangius ir nepažangius pagal dvi strategijas Rezultatus išvesti į ekraną arba į failus alfos.\+txt ir susmukeliai.\+txt Rūšiuoti studentus pagal vardą, pavardę arba galutinį rezultatą
+
+Programa naudoja dvi klases. Bazinę Žmogaus klasę, kuri aprašo bendrus žmogaus atributus (vardas, pavardė). Turi gryną virtualią funckiją test(), todėl iš jos negalima kurti objektų. Ir klasę Studentas, kuri yra paveldima iš Žmogaus klasės. Joje saugomi Studento pažymiai ir galutinis rezultatas. Implementuoja test() metodą, galima kurti Studento tipo objektus.
+
+
+
+Perdengtų metodų paaiškinimas
+
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- Įvesties būdai -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Realizacija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Aprašymas    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Realizacija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Aprašymas    }\\\cline{1-3}
+\endhead
+Rankinis   &pasirinkimas == 1   &Vartotojas suveda vardą, pavardę, ND ir egzaminą    \\\cline{1-3}
+Pusiau auto   &pasirinkimas == 2   &Automatiškai generuojami tik pažymiai    \\\cline{1-3}
+Automatinis   &pasirinkimas == 3   &Visi duomenys sugeneruojami automatiškai    \\\cline{1-3}
+Iš failo   &failo pasirinkimas == 1,2,3,4,5   &Visi duomenys sugeneruojami kursiokai.\+txt faile   \\\cline{1-3}
+\end{longtabu}
+
+
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- Išvesties būdai -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Realizacija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failai    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Realizacija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failai    }\\\cline{1-3}
+\endhead
+Ekranas   &pasirinkimas == 1, spausdinam()   &Duomenys išvedami į ekraną pagal rikiavimą    \\\cline{1-3}
+Į failą   &pasirinkimas == 2, spausdinam()   &Sukuriami alfos.\+txt ir susmukeliai.\+txt   \\\cline{1-3}
+\end{longtabu}
+
+
+
+
+~\newline
+
+
+
+
+~\newline
+
+
+Vektoriaus funkcijų paaiškinimas\+:
+
+
+\begin{DoxyEnumerate}
+\item push\+\_\+back funkcija Paskirtis\+: Prideda naują elementą į vektoriaus pabaigą.
+\end{DoxyEnumerate}
+
+Veikimas\+: Jei nėra pakankamai vietos (t. y. talpa lygi dydžiui), talpa padvigubinama. Sukuriamas naujas masyvas su didesne talpa, į jį perkopijuojami esami elementai. Galiausiai pridedamas naujas elementas į galą.
+
+
+\begin{DoxyEnumerate}
+\item pop\+\_\+back funkcija Paskirtis\+: Pašalina paskutinį vektoriaus elementą.
+\end{DoxyEnumerate}
+
+Veikimas\+: Patikrina, ar vektorius nėra tuščias. Sumažina dydį vienetu.
+
+
+\begin{DoxyEnumerate}
+\item get\+Size funkcija Paskirtis\+: Grąžina šiuo metu esančių elementų skaičių vektoriuje. Veikimas\+: Tiesiogiai grąžina size reikšmę.
+\item resize funkcija Paskirtis\+: Keičia vektoriaus dydį į nurodytą.
+\end{DoxyEnumerate}
+
+Veikimas\+: Jei naujas dydis didesnis nei esamas, pridedami numatytieji elementai. Jei mažesnis – vektoriaus dydis sumažinamas. Jei reikia – padidinama talpa.
+
+
+\begin{DoxyEnumerate}
+\item Konstruktorius ir destruktorius Paskirtis\+: Konstruktorius inicializuoja tuščią vektorių. Destruktorius atlaisvina užimtą atmintį.
+\end{DoxyEnumerate}
+
+Veikimas\+: Konstruktorius nustato data = nullptr, size = 0, capacity = 0. Destruktorius naudoja delete\mbox{[}\mbox{]} atlaisvinti dinamiškai priskirtą atmintį.
+
+==== REZULTATŲ LENTELĖ ==== \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veiksmas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+0 (1M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 (1M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+0 (10M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 (10M)    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veiksmas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+0 (1M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 (1M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+0 (10M)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 (10M)    }\\\cline{1-5}
+\endhead
+Failo kūrimo laikas   &3.\+15s   &3.\+02s   &29.\+61s   &29.\+57s    \\\cline{1-5}
+Duomenų nuskaitymo laikas   &7.\+54s   &8.\+08s   &76.\+73s   &82.\+71s    \\\cline{1-5}
+Skirstymo laikas   &0.\+84s   &1.\+14s   &9.\+70s   &12.\+18s    \\\cline{1-5}
+Rezultatų išvedimo laikas   &0.\+40s   &0.\+39s   &3.\+96s   &4.\+25s    \\\cline{1-5}
+Rūšiavimo tvarka laikas   &0.\+04s   &0.\+18s   &0.\+45s   &1.\+69s    \\\cline{1-5}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---    \\\cline{1-5}
+Visos programos laikas   &18.\+68s   &21.\+86s   &136.\+59s   &146.\+66s   \\\cline{1-5}
+\end{longtabu}
+
+
+==== FLAGŲ PALYGINIMAS ==== \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{7}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veiksmas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O1   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O2   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O3   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O1   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O2   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O3    }\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veiksmas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O1   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O2   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1 -\/O3   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O1   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O2   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ V1.\+1 -\/O3    }\\\cline{1-7}
+\endhead
+Failo kūrimo laikas   &2.\+96s   &2.\+99s   &3.\+00s   &2.\+97s   &3.\+01s   &2.\+97s    \\\cline{1-7}
+Duomenų nuskaitymo laikas   &7.\+48s   &7.\+51s   &7.\+53s   &8.\+09s   &8.\+09s   &8.\+09s    \\\cline{1-7}
+Skirstymo į blogus/gerus laikas   &0.\+84s   &0.\+83s   &0.\+83s   &1.\+14s   &1.\+15s   &1.\+15s    \\\cline{1-7}
+Rezultatų išvedimo laikas   &0.\+40s   &0.\+40s   &0.\+40s   &0.\+42s   &0.\+40s   &0.\+45s    \\\cline{1-7}
+Rūšiavimo tvarka laikas   &0.\+03s   &0.\+03s   &0.\+04s   &0.\+18s   &0.\+18s   &0.\+18s    \\\cline{1-7}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---    \\\cline{1-7}
+Visos programos laikas   &19.\+06s   &19.\+32s   &18.\+03s   &18.\+01s   &17.\+16s   &17.\+05s   \\\cline{1-7}
+\end{longtabu}
+
+
+==== Vektorių push\+\_\+back palyginimas ==== \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Custom \doxylink{class_vector}{Vector} (laikas)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ STL \doxylink{class_vector}{Vector} (laikas)    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Custom \doxylink{class_vector}{Vector} (laikas)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ STL \doxylink{class_vector}{Vector} (laikas)    }\\\cline{1-3}
+\endhead
+1000.\+txt   &0.\+01s   &0.\+01s    \\\cline{1-3}
+10000.\+txt   &0.\+03s   &0.\+04s    \\\cline{1-3}
+100000.\+txt   &0.\+13s   &0.\+18s    \\\cline{1-3}
+1000000.\+txt   &1.\+06s   &1.\+54s    \\\cline{1-3}
+10000000.\+txt   &11.\+74s   &16.\+08s    \\\cline{1-3}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   \\\cline{1-3}
+\end{longtabu}
+
+
+==== Vektorių veikimo laiko palyginimas ==== Custom vektorius \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{7}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Kūrimo   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Išvedimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Viso laikas    }\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Kūrimo   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Išvedimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Viso laikas    }\\\cline{1-7}
+\endhead
+kursiokai100k   &0.\+49s   &0.\+95s   &0.\+01s   &0.\+06s   &0.\+03s   &13.\+83s    \\\cline{1-7}
+kursiokai1M   &4.\+93s   &9.\+65s   &0.\+13s   &0.\+57s   &0.\+14s   &21.\+76s    \\\cline{1-7}
+kursiokai10M   &49.\+24s   &98.\+74s   &1.\+45s   &5.\+74s   &1.\+50s   &173.\+69s    \\\cline{1-7}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   \\\cline{1-7}
+\end{longtabu}
+
+
+stl vektorius \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{7}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Kūrimo   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Išvedimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Viso laikas    }\\\cline{1-7}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Kūrimo   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Išvedimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Viso laikas    }\\\cline{1-7}
+\endhead
+kursiokai100k   &0.\+40s   &0.\+95s   &0.\+01s   &0.\+05s   &0.\+03s   &10.\+50s    \\\cline{1-7}
+kursiokai1M   &3.\+92s   &9.\+60s   &0.\+13s   &0.\+52s   &0.\+10s   &19.\+73s    \\\cline{1-7}
+kursiokai10M   &47.\+24s   &90.\+70s   &1.\+15s   &4.\+63s   &1.\+49s   &120.\+21s    \\\cline{1-7}
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/---   &-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---   \\\cline{1-7}
+\end{longtabu}
