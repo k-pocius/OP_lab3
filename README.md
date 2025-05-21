@@ -121,7 +121,6 @@ Destruktorius naudoja delete[] atlaisvinti dinamiškai priskirtą atmintį.
 |-------------------|------------------------|---------------------------|
 
 
-
 ==== Vektorių veikimo laiko palyginimas ====
 Custom vektorius
 | Failas          |  Kūrimo | Nuskaitymas | Skirstymas | Išvedimas | Rūšiavimas | Viso laikas |
@@ -130,6 +129,7 @@ Custom vektorius
 | kursiokai1M     | 4.93s   | 9.65s       | 0.13s      | 0.57s     | 0.14s      | 21.76s      |
 | kursiokai10M    | 49.24s  | 98.74s      | 1.45s      | 5.74s     | 1.50s      | 173.69s     |
 |-----------------|---------|-------------|------------|-----------|------------|-------------|
+
 
 stl vektorius
 | Failas          |  Kūrimo | Nuskaitymas | Skirstymas | Išvedimas | Rūšiavimas | Viso laikas |
