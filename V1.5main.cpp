@@ -78,11 +78,11 @@ int main() {
 
 
         //push testas
-        auto startas = std::chrono::high_resolution_clock::now();
-            pushTestas(n);
-        auto pabaiga = std::chrono::high_resolution_clock::now();
-        pushlaikas = pabaiga - startas;
-        BadStudents.clear(); // isvalom vektoriu
+        // auto startas = std::chrono::high_resolution_clock::now();
+        //     pushTestas(n);
+        // auto pabaiga = std::chrono::high_resolution_clock::now();
+        // pushlaikas = pabaiga - startas;
+        // BadStudents.clear(); // isvalom vektoriu
 
 
         
@@ -202,6 +202,7 @@ int main() {
     cout << "failas: " << filename << endl;
     cout << "Failo kūrimo laikas: " << generationTime.count() << "s" << endl;
     cout << "Push_back laikas: " << pushlaikas.count() << "s" << endl;
+    cout << "ND reallocations count: " << Vector<int>::getCount() << endl;
     cout << "Duomenų nuskaitymo laikas: " << readTime.count() << "s" << endl;     
     cout << "Skirstymo laikas į blogus ir gerus: " << sortTime.count() << "s" << endl;
     cout << "Rezultatų išvedimo laikas: " << writeTime.count() << "s" << endl;

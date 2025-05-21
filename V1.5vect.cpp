@@ -38,6 +38,7 @@ void pushTestas(int n){
         }
         temp.setEgz(dist(mt));
         BadStudents.push_back(temp);
+        ND.clear();
     }
 }
 

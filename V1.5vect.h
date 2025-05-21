@@ -70,10 +70,13 @@ class Vector{
             return data + size;
         }
 
-            
+        static size_t count;// size == capacity counteris
+
         // push_back funkcija
         void push_back(const T& value) {
+            
             if (size == capacity) {
+                count++;
                 size_t new_capacity = (capacity == 0) ? 1 : capacity * 2;
                 T* new_data = new T[new_capacity];
 
@@ -137,6 +140,10 @@ class Vector{
             return capacity;
         }
 
+        static size_t getCount() {
+            return count;
+        }
+
     Vector(std::initializer_list<T> init) : data(nullptr), size(0), capacity(0) {
         size = init.size();
         capacity = size;
@@ -147,14 +154,18 @@ class Vector{
         }
     }
 };
-//     template <typename T>
-//     bool operator==(const Vector<T>& lhs, const Vector<T>& rhs) {
-//         if (lhs.getSize() != rhs.getSize()) return false;
-//         for (size_t i = 0; i < lhs.getSize(); ++i) {
-//             if (lhs[i] != rhs[i]) return false;
-//         }
-//         return true;
-// }
+    template <typename T>
+    bool operator==(const Vector<T>& lhs, const Vector<T>& rhs) {
+        if (lhs.getSize() != rhs.getSize()) return false;
+        for (size_t i = 0; i < lhs.getSize(); ++i) {
+            if (lhs[i] != rhs[i]) return false;
+        }
+        return true;
+}
+
+template<typename T>
+size_t Vector<T>::count = 0;
+
 
 class Zmogus{
     protected:
