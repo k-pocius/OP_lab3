@@ -110,7 +110,7 @@ Destruktorius naudoja delete[] atlaisvinti dinamiškai priskirtą atmintį.
 | Visos programos laikas          | 19.06s  |  19.32s |  18.03s |   18.01s  |   17.16s  |   17.05s  |
 
 
-==== Vektorių palyginimas ====
+==== Vektorių push_back palyginimas ====
 |      File         | Custom Vector (laikas) | STL Vector (laikas)       |
 |-------------------|------------------------|---------------------------|
 | 1000.txt          | 0.01s                  | 0.01s                     |
@@ -119,3 +119,12 @@ Destruktorius naudoja delete[] atlaisvinti dinamiškai priskirtą atmintį.
 | 1000000.txt       | 1.06s                  | 1.54s                     |
 | 10000000.txt      | 11.74s                 | 16.08s                    |
 |-------------------|------------------------|---------------------------|
+
+
+==== Vektorių veikimo laiko palyginimas ====
+| Failas          |  Kūrimo | Nuskaitymas | Skirstymas | Išvedimas | Rūšiavimas | Viso laikas |
+|-----------------|---------|-------------|------------|-----------|------------|-------------|
+| kursiokai100k   | 0.49s   | 0.95s       | 0.01s      | 0.06s     | 0.03s      | 13.83s      |
+| kursiokai1M     | 4.93s   | 9.65s       | 0.13s      | 0.57s     | 0.14s      | 21.76s      |
+| kursiokai10M    | 49.24s  | 98.74s      | 1.45s      | 5.74s     | 1.50s      | 173.69s     |
+|-----------------|---------|-------------|------------|-----------|------------|-------------|
