@@ -121,6 +121,7 @@ Destruktorius naudoja delete[] atlaisvinti dinamiškai priskirtą atmintį.
 |-------------------|------------------------|---------------------------|
 
 
+
 ==== Vektorių veikimo laiko palyginimas ====
 Custom vektorius
 | Failas          |  Kūrimo | Nuskaitymas | Skirstymas | Išvedimas | Rūšiavimas | Viso laikas |
