@@ -10,74 +10,101 @@ extern std::chrono::duration<double> sortTime; // skirstymo laikas
 extern std::chrono::duration<double> writeTime; // rasymo laikas
 extern std::chrono::duration<double> rusiavimoLaikas; // rusiavimo laikas
 
+// V1.5vect.h
+#pragma once
+#include <initializer_list>
+#include <stdexcept> // for std::out_of_range
+
 template <typename T>
-class Vector{
-    private:
-        T* data; // duomenu masyvas
-        size_t size; // masyvo dydis
-        size_t capacity; // talpa
+class Vector {
+private:
+    T* data; // duomenu masyvas
+    size_t size; // masyvo dydis
+    size_t capacity; // talpa
 
-    public:
-        Vector() : data(nullptr), size(0), capacity(0) {} // konstruktorius;
+public:
+    Vector() : data(nullptr), size(0), capacity(0) {} // konstruktorius;
 
-        ~Vector(){};
+    ~Vector() {};
 
-        //index operator
-        T& operator[](size_t index) {
-            return data[index];
+    //index operator
+    T& operator[](size_t index) {
+        return data[index];
+    }
+
+    const T& operator[](size_t index) const {
+        return data[index];
+    }
+
+    //back function
+    T& back() {
+        return data[size - 1];
+    }
+
+    const T& back() const {
+        return data[size - 1];
+    }
+
+    //empty function
+    bool empty() const {
+        return size == 0;
+    }
+
+    //clear function
+    void clear() {
+        size = 0;
+    }
+
+    // begin, end function
+    T* begin() {
+        return data;
+    }
+
+    const T* begin() const {
+        return data;
+    }
+
+    T* end() {
+        return data + size;
+    }
+
+    const T* end() const {
+        return data + size;
+    }
+
+    static size_t count;
+
+    // push_back funkcija
+    void push_back(const T& value) {
+        if (size == capacity) {
+            count++;
+            size_t new_capacity = (capacity == 0) ? 1 : capacity * 2;
+            T* new_data = new T[new_capacity];
+
+            for (size_t i = 0; i < size; ++i) {
+                new_data[i] = data[i];
+            }
+
+            delete[] data;
+            data = new_data;
+            capacity = new_capacity;
         }
 
-        const T& operator[](size_t index) const {
-            return data[index];
-        }
+        data[size++] = value;
+    }
 
+    //pop_back
+    void pop_back() {
+        if (size == 0) return;
+        --size;
+    }
 
-        //back function
-        T& back() {
-            return data[size - 1];
-        }
-
-        const T& back() const {
-            return data[size - 1];
-        }
-
-        //empty function
-        bool empty() const {
-            return size == 0;
-        }
-
-        //clear function
-        void clear() {
-            size = 0;
-        }
-
-
-        // begin, end function
-        T* begin() {
-            return data;
-        }
-
-        const T* begin() const {
-            return data;
-        }
-
-
-        T* end() {
-            return data + size;
-        }
-
-        const T* end() const {
-            return data + size;
-        }
-
-        static size_t count;// size == capacity counteris
-
-        // push_back funkcija
-        void push_back(const T& value) {
-            
-            if (size == capacity) {
-                count++;
-                size_t new_capacity = (capacity == 0) ? 1 : capacity * 2;
+    void resize(size_t newSize) {
+        if (newSize < size) {
+            size = newSize;
+        } else if (newSize > size) {
+            if (newSize > capacity) {
+                size_t new_capacity = newSize;
                 T* new_data = new T[new_capacity];
 
                 for (size_t i = 0; i < size; ++i) {
@@ -89,60 +116,26 @@ class Vector{
                 capacity = new_capacity;
             }
 
-            data[size++] = value;
-        }
-
-
-        //pop_back
-        void pop_back() {
-            if (size == 0) {
-                // Vector is already empty
-                return;
+            for (size_t i = size; i < newSize; ++i) {
+                data[i] = T();
             }
-            --size;
+
+            size = newSize;
         }
+    }
 
-        void resize(size_t newSize) {
-            if (newSize < size) {
-                // Shrink: just reduce size, data remains
-                size = newSize;
-            } 
-            else if (newSize > size) {
-                if (newSize > capacity) {
-                    // Need to grow
-                    size_t new_capacity = newSize;
-                    T* new_data = new T[new_capacity];
+    // getteriai
+    size_t getSize() const {
+        return size;
+    }
 
-                    for (size_t i = 0; i < size; ++i) {
-                        new_data[i] = data[i];
-                    }
+    size_t getCapacity() const {
+        return capacity;
+    }
 
-                    delete[] data;
-                    data = new_data;
-                    capacity = new_capacity;
-                }
-
-                // Default-initialize new elements
-                for (size_t i = size; i < newSize; ++i) {
-                    data[i] = T();
-                }
-
-                size = newSize;
-            }
-        }
-
-        // getteriai
-        size_t getSize() const {
-            return size;
-        }
-
-        size_t getCapacity() const {
-            return capacity;
-        }
-
-        static size_t getCount() {
-            return count;
-        }
+    static size_t getCount() {
+        return count;
+    }
 
     Vector(std::initializer_list<T> init) : data(nullptr), size(0), capacity(0) {
         size = init.size();
@@ -154,17 +147,118 @@ class Vector{
         }
     }
 };
-    template <typename T>
-    bool operator==(const Vector<T>& lhs, const Vector<T>& rhs) {
-        if (lhs.getSize() != rhs.getSize()) return false;
-        for (size_t i = 0; i < lhs.getSize(); ++i) {
-            if (lhs[i] != rhs[i]) return false;
-        }
-        return true;
-}
 
+// Static count variable definition
 template<typename T>
 size_t Vector<T>::count = 0;
+
+// operator==
+template <typename T>
+bool operator==(const Vector<T>& lhs, const Vector<T>& rhs) {
+    if (lhs.getSize() != rhs.getSize()) return false;
+    for (size_t i = 0; i < lhs.getSize(); ++i) {
+        if (lhs[i] != rhs[i]) return false;
+    }
+    return true;
+}
+
+// Additional functions (correctly added outside the class)
+
+// at()
+template <typename T>
+T& at(Vector<T>& vec, size_t index) {
+    if (index >= vec.getSize()) throw std::out_of_range("Index out of range");
+    return vec[index];
+}
+
+template <typename T>
+const T& at(const Vector<T>& vec, size_t index) {
+    if (index >= vec.getSize()) throw std::out_of_range("Index out of range");
+    return vec[index];
+}
+
+// front()
+template <typename T>
+T& front(Vector<T>& vec) {
+    return vec[0];
+}
+
+template <typename T>
+const T& front(const Vector<T>& vec) {
+    return vec[0];
+}
+
+// data pointer accessors
+template <typename T>
+T* get_data(Vector<T>& vec) {
+    return vec.begin();
+}
+
+template <typename T>
+const T* get_data(const Vector<T>& vec) {
+    return vec.begin();
+}
+
+// operator!=
+template <typename T>
+bool operator!=(const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(lhs == rhs);
+}
+
+// operator<
+template <typename T>
+bool operator<(const Vector<T>& lhs, const Vector<T>& rhs) {
+    size_t minSize = lhs.getSize() < rhs.getSize() ? lhs.getSize() : rhs.getSize();
+    for (size_t i = 0; i < minSize; ++i) {
+        if (lhs[i] < rhs[i]) return true;
+        if (lhs[i] > rhs[i]) return false;
+    }
+    return lhs.getSize() < rhs.getSize();
+}
+
+// operator<=
+template <typename T>
+bool operator<=(const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(rhs < lhs);
+}
+
+// operator>
+template <typename T>
+bool operator>(const Vector<T>& lhs, const Vector<T>& rhs) {
+    return rhs < lhs;
+}
+
+// operator>=
+template <typename T>
+bool operator>=(const Vector<T>& lhs, const Vector<T>& rhs) {
+    return !(lhs < rhs);
+}
+
+// swap
+template <typename T>
+void swap(Vector<T>& a, Vector<T>& b) {
+    using std::swap;
+    swap(a, b);
+}
+
+// assign
+template <typename T>
+void assign(Vector<T>& vec, std::initializer_list<T> list) {
+    vec.clear();
+    for (const auto& item : list) {
+        vec.push_back(item);
+    }
+}
+
+// find
+template <typename T>
+T* find(Vector<T>& vec, const T& value) {
+    for (T* it = vec.begin(); it != vec.end(); ++it) {
+        if (*it == value) return it;
+    }
+    return vec.end();
+}
+
 
 
 class Zmogus{

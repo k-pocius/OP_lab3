@@ -72,8 +72,8 @@ Veikimas: Tiesiogiai grąžina size reikšmę.
 Paskirtis: Keičia vektoriaus dydį į nurodytą.
 
 Veikimas: Jei naujas dydis didesnis nei esamas, pridedami numatytieji elementai.
-Jei mažesnis – vektoriaus dydis sumažinamas.
-Jei reikia – padidinama talpa.
+Jei mažesnis - vektoriaus dydis sumažinamas.
+Jei reikia - padidinama talpa.
 
 
 5. Konstruktorius ir destruktorius
