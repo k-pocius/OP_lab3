@@ -78,11 +78,11 @@ int main() {
 
 
         //push testas
-        // auto startas = std::chrono::high_resolution_clock::now();
-        //     pushTestas(n);
-        // auto pabaiga = std::chrono::high_resolution_clock::now();
-        // pushlaikas = pabaiga - startas;
-        // BadStudents.clear(); // isvalom vektoriu
+        auto startas = std::chrono::high_resolution_clock::now();
+            pushTestas(n);
+        auto pabaiga = std::chrono::high_resolution_clock::now();
+        pushlaikas = pabaiga - startas;
+        BadStudents.clear(); // isvalom vektoriu
 
 
         
