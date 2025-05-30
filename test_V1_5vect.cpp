@@ -88,7 +88,7 @@ TEST(StudentTest, MoveConstructor) {
     EXPECT_EQ(s2.getNd(), Vector<int>({10, 9}));
     EXPECT_EQ(s2.getVid(), 9.1);
 
-    // Ensure s1 is in a valid but unspecified state
+
     EXPECT_EQ(s1.getName(), "");
     EXPECT_EQ(s1.getSurn(), "");
     EXPECT_EQ(s1.getEgz(), 0);
@@ -114,7 +114,7 @@ TEST(StudentTest, MoveAssignmentOperator) {
     EXPECT_EQ(s2.getNd(), Vector<int>({5, 6, 7}));
     EXPECT_EQ(s2.getVid(), 7.5);
 
-    // Ensure s1 is in a valid but unspecified state
+
     EXPECT_EQ(s1.getName(), "");
     EXPECT_EQ(s1.getSurn(), "");
     EXPECT_EQ(s1.getEgz(), 0);
@@ -125,14 +125,14 @@ TEST(StudentTest, MoveAssignmentOperator) {
 // Test default empty vector
 TEST(Vector, DefaultEmpty) {
     Vector<int> v;
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); // Fix: Explicit cast
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); 
 }
 
 // Test push_back and access
 TEST(Vector, PushBackAndAccess) {
     Vector<int> v;
     v.push_back(42);
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(1)); // Fix: Explicit cast
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(1)); 
 }
 
 // Test pop_back
@@ -140,9 +140,9 @@ TEST(Vector, PopBack) {
     Vector<int> v;
     v.push_back(1);
     v.pop_back();
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); // Fix: Explicit cast
-    v.pop_back();  // no crash if empty
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); // Fix: Explicit cast
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); 
+    v.pop_back(); 
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(0)); 
 }
 
 // Test resize grow
@@ -150,14 +150,50 @@ TEST(Vector, ResizeGrow) {
     Vector<int> v;
     v.push_back(5);
     v.resize(3);
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(3)); // Fix: Explicit cast
-    EXPECT_EQ(v[1], 0);  // default int
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(3)); 
+    EXPECT_EQ(v[1], 0); 
 }
 
 // Test resize shrink
 TEST(Vector, ResizeShrink) {
     Vector<int> v = {1, 2, 3};
     v.resize(2);
-    EXPECT_EQ(v.getSize(), static_cast<size_t>(2)); // Fix: Explicit cast
+    EXPECT_EQ(v.getSize(), static_cast<size_t>(2)); 
     EXPECT_EQ(v[1], 2);
+}
+
+TEST(VectorRuleOfFive, MoveConstructor) {
+    Vector<int> v1 = {7, 8, 9};
+    Vector<int> v2(std::move(v1));  // Move constructor
+
+    EXPECT_EQ(v2.getSize(), static_cast<size_t>(3)); // Fix: Explicit cast
+    EXPECT_EQ(v2[0], 7);
+    EXPECT_EQ(v2[1], 8);
+    EXPECT_EQ(v2[2], 9);
+
+    EXPECT_EQ(v1.getSize(), static_cast<size_t>(0)); // Fix: Explicit cast
+}
+
+TEST(VectorRuleOfFive, CopyAssignment) {
+    Vector<int> v1 = {4, 5, 6};
+    Vector<int> v2;
+    v2 = v1;  // Copy assignment
+
+    EXPECT_EQ(v2.getSize(), v1.getSize());
+    for (size_t i = 0; i < v1.getSize(); ++i) {
+        EXPECT_EQ(v2[i], v1[i]);
+    }
+}
+
+TEST(VectorRuleOfFive, MoveAssignment) {
+    Vector<int> v1 = {10, 11, 12};
+    Vector<int> v2;
+    v2 = std::move(v1);  // Move assignment
+
+    EXPECT_EQ(v2.getSize(), static_cast<size_t>(3));
+    EXPECT_EQ(v2[0], 10);
+    EXPECT_EQ(v2[1], 11);
+    EXPECT_EQ(v2[2], 12);
+
+    EXPECT_EQ(v1.getSize(), static_cast<size_t>(0));
 }

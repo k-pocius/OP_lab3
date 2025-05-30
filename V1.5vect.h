@@ -10,10 +10,6 @@ extern std::chrono::duration<double> sortTime; // skirstymo laikas
 extern std::chrono::duration<double> writeTime; // rasymo laikas
 extern std::chrono::duration<double> rusiavimoLaikas; // rusiavimo laikas
 
-// V1.5vect.h
-#pragma once
-#include <initializer_list>
-#include <stdexcept> // for std::out_of_range
 
 template <typename T>
 class Vector {
@@ -26,6 +22,49 @@ public:
     Vector() : data(nullptr), size(0), capacity(0) {} // konstruktorius;
 
     ~Vector() {};
+
+        // Copy constructor
+    Vector(const Vector& other) {
+        size = other.size;
+        capacity = other.capacity;
+        data = new T[capacity];
+        std::copy(other.data, other.data + size, data);
+    }
+
+    // Copy assignment operator
+    Vector& operator=(const Vector& other) {
+        if (this != &other) {
+            delete[] data;
+            size = other.size;
+            capacity = other.capacity;
+            data = new T[capacity];
+            std::copy(other.data, other.data + size, data);
+        }
+        return *this;
+    }
+
+    // Move constructor
+    Vector(Vector&& other) noexcept
+        : data(other.data), size(other.size), capacity(other.capacity) {
+        other.data = nullptr;
+        other.size = 0;
+        other.capacity = 0;
+    }
+
+    // Move assignment operator
+Vector& operator=(Vector&& other) noexcept {
+    if (this != &other) {
+        delete[] data;
+        data = other.data;
+        size = other.size;
+        capacity = other.capacity;
+
+        other.data = nullptr;
+        other.size = 0;
+        other.capacity = 0;
+    }
+    return *this; // ✅ Add this line
+}
 
     //index operator
     T& operator[](size_t index) {
@@ -146,7 +185,10 @@ public:
             data[i++] = elem;
         }
     }
+
+    
 };
+
 
 // Static count variable definition
 template<typename T>
@@ -162,7 +204,6 @@ bool operator==(const Vector<T>& lhs, const Vector<T>& rhs) {
     return true;
 }
 
-// Additional functions (correctly added outside the class)
 
 // at()
 template <typename T>
